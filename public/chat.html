@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Messagram</title>
+    <link rel="shortcut icon" href="./icon/icon-2.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="https://kit.fontawesome.com/bac8ec053a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/chat.css">
+</head>
+<body>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<div class="container">
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card chat-app">
+            <div id="plist" class="people-list">
+                <div class="side-bar-logo">
+                    <img src="./icon/icon-2.png" alt="icon">
+                    <span><p>Messagram</p></span>
+                </div>
+                <div id="user-list-div"></div>
+            </div>
+            <div class="chat">
+                <div class="chat-header clearfix">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                <!-- <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar"> -->
+                                <img src="./images/avatar.png" alt="avatar">
+                            </a>
+                            <div class="chat-about">
+                                <h6 class="m-b-0 welcome-message" id="welcome-message"></h6>
+                                <small>Online</small>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 hidden-sm text-right">
+                            <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
+                            <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
+                            <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
+                            <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
+                        </div>
+                    </div>
+                </div>
+                                                        <!--! Messages -->
+                <div class="chat-history">
+                    <ul class="m-b-0" id="message"></ul>
+                </div>
+                <div class="chat-message clearfix">
+                    <div class="input-group mb-0">
+                        <form class="input-group mb-0" id="message-form">
+                            <input name="message" id="text-message" type="text" style="height: 45px;"  class="form-control" placeholder="Text Message" required autocomplete="off">                                    
+                            <div class="input-group-prepend">
+                                <button id="send-btn" class="btn btn-warning ml-2 px-3 pl-3"  type="submit">
+                                    <i class="fa fa-send"></i>
+                                </button>
+                                <button id="location-btn" class="btn btn-danger ml-2 px-4" type="submit">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+    <!--! TAMPLATES -->
+
+    <!-- MESSAGE -->
+    <script id="message-template" type="text/html">
+        <li class="clearfix">
+            <div class="message-data text-right">
+                <span class="username">{{username}}</span>
+                <img src="./images/avatar.png" alt="avatar">
+            </div>
+            <div class="message other-message float-right">
+                {{message}}
+                <span class="message-time"> 
+                    {{createdAt}}
+                    <i class="fas fa-check-double"></i>
+                </span>
+            </div>
+        </li>
+    </script>
+
+    <!-- Location -->
+    <script id="location-template" type="text/html">
+        <li class="clearfix">
+            <div class="message-data text-right">
+                <span class="username">{{username}}</span>
+                <img src="./images/avatar.png" alt="avatar">
+            </div>
+            <div class="message other-message float-right">
+                <a target="_blank" href="{{url}}" style="text-decoration: none; font-size: 18px;">
+                    My Location <i class="fa fa-map-marker" aria-hidden="true"></i>
+                </a>
+                <span class="message-time">{{createdAt}}</span>
+            </div>
+        </li>
+    </script>
+
+    <!-- User Broadcast -->
+    <script id="user-broadcast-template" type="text/html">
+        <div class="user-broadcast">
+            <p class="user-broadcast-message">{{message}}</p>
+        </div>
+    </script>
+
+    <!-- Users in Room -->
+    <script id="users-list-template" type="text/html">
+        <div class="room-name"><h3>{{room}}</h3></div>
+        <ul class="list-unstyled chat-list mt-2 mb-0">
+        {{#users}}
+        <li class="clearfix">
+            <img src="./images/avatar.png" alt="avatar">
+            <div class="about">
+                <div class="name">{{username}}</div>
+                <div class="status"> <i class="fa fa-circle online"></i> Online </div>                                            
+            </div>
+        </li>
+        {{/users}}
+        </ul>
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/chat.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
